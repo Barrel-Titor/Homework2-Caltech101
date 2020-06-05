@@ -43,7 +43,8 @@ class Caltech(VisionDataset):
         self.split_ = os.path.join(self.root, '..', self.split + '.txt')
 
         with open(self.split_, 'r') as f:
-            for line in f.readlines():
+            for line in f:
+                line = line.strip('\n')
                 label = line.split('/')[0]
                 if label != 'BACKGROUND_Google':
                     self.img_list.append((line, self.label_list.index(label)))
